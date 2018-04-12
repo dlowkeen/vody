@@ -1,16 +1,8 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { TabNavigator } from "react-navigation";
-
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-}
+import Home from './Home';
+import Search from './Search';
 
 class SettingsScreen extends React.Component {
   render() {
@@ -23,6 +15,7 @@ class SettingsScreen extends React.Component {
 }
 
 export default TabNavigator({
-  Home: { screen: HomeScreen },
+  Home: { screen: Home },
+  Search: { screen: Search },
   Settings: { screen: SettingsScreen }
 });
