@@ -1,15 +1,24 @@
 import React, { Component } from "react";
-import { Container, Header, Content, Item, Input } from "native-base";
+import { Container, Header, Left, Right, Title, Body, Content, Item, Input, Button, Text } from "native-base";
 
 export default class Search extends Component {
   render() {
     return (
       <Container>
-        <Header />
+        <Header>
+          <Left />
+            <Body>
+              <Title>Movie Search</Title>
+            </Body>
+          <Right />
+        </Header>
         <Content>
-          <Item rounded>
-            <Input placeholder="Rounded Textbox" />
+          <Item>
+            <Input placeholder="Search Movie.." />
           </Item>
+          <Button full>
+            <Text>Search</Text>
+          </Button>
         </Content>
       </Container>
     );
