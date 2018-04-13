@@ -11,34 +11,29 @@ export default class Home extends Component {
       console.log("response", response);
       let movie = response.data;
       this.setState({
-        movie: movie
+        movies: movie
       });
     });
   }
 
   renderContent() {
-    if (this.state.movie) {
+    // const movie = this.state.movie ? this.state.movie.title : null;
+    console.log(this.state);
+    if (this.state) {
       return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-          <Text>{movie}</Text>
+          <Text>movie to display here!</Text>
         </View>
       );
-    } else {
-      return (
-        <View>
-          <Text>Sorry</Text>
-        </View>
-      );
-    }
+    } 
   }
 
   render() {
-    const movie = this.state.movie ? this.state.movie.title : null;
-    console.log(this.state);
     return (
-      <div>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         {this.renderContent()}
-      </div>
+        <Text>Hi</Text>
+      </View>
     );
   }
 }
