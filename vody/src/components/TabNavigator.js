@@ -1,21 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { TabNavigator } from "react-navigation";
-import Home from './Home';
-import Search from './Search';
-
-class SettingsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-}
+import Home from './home/Home';
+import Search from './search/Search';
+import Profile from './profile/Profile';
 
 export default TabNavigator({
   Home: { screen: Home },
   Search: { screen: Search },
-  Settings: { screen: SettingsScreen }
+  Profile: { screen: Profile }
 });
