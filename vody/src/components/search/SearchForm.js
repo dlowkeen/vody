@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import { Container, Content, Button, Input, Item, Label, Span, Form } from 'native-base'
+import { Container, Content, Button, Input, Item, Label, Span, Form, Text, View } from 'native-base'
 import {
   required,
   maxLength25,
@@ -37,27 +37,23 @@ class SearchForm extends Component {
 
   render() {
     const { error, handleSubmit, pristine, reset, submitting } = this.props;
-    return (
-      <Container>
+    return <Container>
         <Content>
           <Form onSubmit={handleSubmit(submit)}>
             {this.renderForm()}
-            <Container>
-              <Button type="submit" disabled={submitting}>
-                Log In
+            <View>
+              <Button rounded success type="submit" disabled={submitting}>
+                <Text>Submit</Text>
               </Button>
-              <Button
-                type="button"
-                disabled={pristine || submitting}
-                onClick={reset}
-              >
-                Clear Values
+            </View>
+            <View>
+              <Button rounded danger type="button" disabled={pristine || submitting} onClick={reset}>
+                <Text>Clear Values</Text>
               </Button>
-            </Container>
+            </View>
           </Form>
         </Content>
-      </Container>
-    );
+      </Container>;
   }
 };
 
