@@ -14,6 +14,7 @@ import SearchFields from './SearchFields';
 class SearchForm extends Component {
   constructor(props) {
     super(props);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
   }
   state = {
     FormInfo: null
@@ -52,7 +53,7 @@ class SearchForm extends Component {
     return (
       <Container>
         <Content>
-          <Form onSubmit={handleSubmit(this.onSearchSubmit)}>
+          <Form onSubmit={this.props.handleSubmit(this.onSearchSubmit) && console.log("this.state", this.state)}>
             {this.renderForm()}
             <View>
               <Button rounded success type="submit" disabled={submitting}>
