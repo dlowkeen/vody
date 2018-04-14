@@ -10,7 +10,6 @@ import {
   renderField
 } from "./formValidation.js";
 import SearchFields from './SearchFields';
-import submit from './submit';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -35,11 +34,25 @@ class SearchForm extends Component {
     return searchField;
   }
 
+  onSearchSubmit(data) {
+    const {
+      title,
+      year
+    } = data;
+    const SearchInfo = {
+      title,
+      year
+    };
+    this.setState({ SearchInfo: SearchInfo });
+    console.log(this.state);
+  }
+
   render() {
     const { error, handleSubmit, pristine, reset, submitting } = this.props;
-    return <Container>
+    return (
+      <Container>
         <Content>
-          <Form onSubmit={handleSubmit(submit)}>
+          <Form onSubmit={handleSubmit(this.onSearchSubmit)}>
             {this.renderForm()}
             <View>
               <Button rounded success type="submit" disabled={submitting}>
@@ -47,13 +60,20 @@ class SearchForm extends Component {
               </Button>
             </View>
             <View>
-              <Button rounded danger type="button" disabled={pristine || submitting} onClick={reset}>
+              <Button
+                rounded
+                danger
+                type="button"
+                disabled={pristine || submitting}
+                onClick={reset}
+              >
                 <Text>Clear Values</Text>
               </Button>
             </View>
           </Form>
         </Content>
-      </Container>;
+      </Container>
+    );
   }
 };
 

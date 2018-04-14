@@ -20,11 +20,9 @@ export default class Home extends Component {
 
   renderContent() {
     const movie = this.state ? this.state.movie.results : null;
-    console.log(movie);
     let moviePath = "https://image.tmdb.org/t/p/w500/"
     if (this.state) {
       const movieList = movie.map(movie=> {
-        console.log(movie);
         return <Container>
             <MovieCard 
               key={movie.id}
