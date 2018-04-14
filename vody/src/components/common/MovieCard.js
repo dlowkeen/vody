@@ -6,26 +6,20 @@ const MovieCard = (props) => {
     return <Container>
         <Content>
           <Card>
-            <CardItem>
-              <Body>
-                <Text>{props.Title}</Text>
-                <Text note>{props.Genre}</Text>
-              </Body>
-            </CardItem>
             <CardItem cardBody>
               <Image source={{ uri: props.Poster }} style={{ height: 600, width: null, flex: 1 }} />
             </CardItem>
             <CardItem>
               <Left>
-                <Text>Year Released: {props.Year}</Text>
+                <Text note>{props.release_date}</Text>
               </Left>
               <Right>
-                <Text>Rated: {props.Rated}</Text>
+                <Text>Avg Score: {props.vote_average}</Text>
               </Right>
             </CardItem>
             <CardItem>
               <Left>
-                <Text>{props.Plot}</Text>
+                <Text>{props.overview}</Text>
               </Left>
             </CardItem>
           </Card>

@@ -24,18 +24,16 @@ export default class Home extends Component {
     console.log(movie);
     let moviePath;
     if (movie) {
-      moviePath = "https://image.tmdb.org/t/p/w185/" + movie.poster_path;
+      moviePath = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
     }
     console.log(moviePath);
     if (this.state) {
       return <Container>
           <MovieCard 
-            Title={movie.original_title} 
-            Genre={movie.Genre} 
             Poster={moviePath}
-            Year={movie.Year}
-            Rated={movie.Rated}
-            Plot={movie.Plot}
+            release_date={movie.release_date}
+            vote_average={movie.vote_average}
+            overview={movie.overview}
           />
         </Container>;
       } 
