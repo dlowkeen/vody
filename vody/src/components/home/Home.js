@@ -7,8 +7,10 @@ import MovieCard from "../common/MovieCard";
 export default class Home extends Component {
   
   componentWillMount() {
-    let title = "space+jam";
-    let queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=40e9cece";
+    // To do: remove and store in prod config variables 
+    let APIKey = "718190bc3e37096f5f6a3adfdeb9abaa";
+    // let queryURL = "https://www.omdbapi.com/?t=" + title + "&y=" + year + "&plot=short&apikey=40e9cece";
+    let queryURL = "https://api.themoviedb.org/3/movie/76341?api_key=" + APIKey;
     axios.get(queryURL).then(response => {
       let movie = response.data;
       this.setState({
@@ -20,19 +22,23 @@ export default class Home extends Component {
   renderContent() {
     const movie = this.state ? this.state.movie : null;
     console.log(movie);
+    let moviePath;
+    if (movie) {
+      moviePath = "https://image.tmdb.org/t/p/w185/" + movie.poster_path;
+    }
+    console.log(moviePath);
     if (this.state) {
       return <Container>
-          <Text>{movie.Title}</Text>
           <MovieCard 
-            Title={movie.Title} 
+            Title={movie.original_title} 
             Genre={movie.Genre} 
-            Poster={movie.Poster}
+            Poster={moviePath}
             Year={movie.Year}
             Rated={movie.Rated}
             Plot={movie.Plot}
           />
         </Container>;
-    } 
+      } 
   }
 
   render() {

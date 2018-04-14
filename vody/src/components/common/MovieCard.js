@@ -7,13 +7,13 @@ const MovieCard = (props) => {
         <Content>
           <Card>
             <CardItem>
-                <Body>
-                  <Text>{props.Title}</Text>
-                  <Text note>{props.Genre}</Text>
-                </Body>
+              <Body>
+                <Text>{props.Title}</Text>
+                <Text note>{props.Genre}</Text>
+              </Body>
             </CardItem>
             <CardItem cardBody>
-              <Image source={{uri: props.Poster}} style={{ height: 200, width: null, flex: 1 }} />
+              <Image source={{ uri: props.Poster }} style={{ height: 600, width: null, flex: 1 }} />
             </CardItem>
             <CardItem>
               <Left>
