@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, Image, ScrollView } from 'react-native';
-import { Container } from 'native-base';
+import { Container, Spinner, Content } from 'native-base';
 import axios from 'axios';
 import MovieCard from "../common/MovieCard";
 
@@ -27,6 +27,7 @@ export default class Home extends Component {
         console.log(movie);
         return <Container>
             <MovieCard 
+              key={movie.id}
               Poster={moviePath + movie.poster_path}
               release_date={movie.release_date}
               vote_average={movie.vote_average}
@@ -35,7 +36,22 @@ export default class Home extends Component {
           </Container>;
       });
       return movieList;
-    } 
+    } else {
+      return <Container>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Spinner color="blue" />
+            <Text>
+              Loading...
+            </Text>
+          </View>
+        </Container>;
+    }
   }
 
   render() {
