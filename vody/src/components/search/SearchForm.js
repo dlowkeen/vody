@@ -1,52 +1,64 @@
-import React from "react";
+import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import { Container, Content, Button, Input, Label, Span, Form } from 'native-base'
+import { Container, Content, Button, Input, Item, Label, Span, Form } from 'native-base'
+import {
+  required,
+  maxLength25,
+  minLength2,
+  renderField
+} from "./formValidation.js";
+import SearchFields from './SearchFields';
 import submit from './submit';
 
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
-  <Container>
-    <Label>{label}</Label>
-    <Container>
-      <Input {...input} placeholder={label} type={type} />
-      {touched && error && <Span>{error}</Span>}
-    </Container>
-  </Container>
-);
+class SearchForm extends Component {
+  constructor(props) {
+    super(props);
+  }
+  state = {
+    FormInfo: null
+  };
 
-const SearchForm = props => {
-    const { error, handleSubmit, pristine, reset, submitting } = props;
-    console.log("HI TEST***************")
-  return (
-    <Container>
-      <Content>
-        <Form onSubmit={handleSubmit(submit)}>
+  renderForm() {
+    const searchField = SearchFields.map(SearchField => {
+      return (
         <Field
-            name="username"
-            type="text"
-            component={renderField}
-            label="Username"
+          key={SearchField.name}
+          name={SearchField.name}
+          type={SearchField.type}
+          component={renderField}
+          label={SearchField.label}
         />
-        <Field
-            name="password"
-            type="password"
-            component={renderField}
-            label="Password"
-        />
-        {error && <strong>{error}</strong>}
-        <Container>
-            <Button type="submit" disabled={submitting}>
-            Log In
-            </Button>
-            <Button type="button" disabled={pristine || submitting} onClick={reset}>
-            Clear Values
-            </Button>
-        </Container>
-        </Form>
-      </Content>
-    </Container>
-  );
+      );
+    });
+    return searchField;
+  }
+
+  render() {
+    const { error, handleSubmit, pristine, reset, submitting } = this.props;
+    return (
+      <Container>
+        <Content>
+          <Form onSubmit={handleSubmit(submit)}>
+            {this.renderForm()}
+            <Container>
+              <Button type="submit" disabled={submitting}>
+                Log In
+              </Button>
+              <Button
+                type="button"
+                disabled={pristine || submitting}
+                onClick={reset}
+              >
+                Clear Values
+              </Button>
+            </Container>
+          </Form>
+        </Content>
+      </Container>
+    );
+  }
 };
 
 SearchForm = reduxForm({
