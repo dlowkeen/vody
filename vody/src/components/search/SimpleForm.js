@@ -60,16 +60,7 @@ class SimpleForm extends Component {
     this.setState({
       search: data
     })
-    console.log("this.state", this.state);
-    console.log("this.props", this.props);
-    // this.props.fetchMovieData(movie);
-    // let APIKey = "718190bc3e37096f5f6a3adfdeb9abaa";
-    // let queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + APIKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
-    // axios.get(queryURL).then(response => {
-    //   let movie = response.data;
-    //   console.log(movie);
-    //   console.log(this.state);
-    // });
+    this.props.fetchMovieData(data);
   }
 
   renderInput({ input, label, type, meta: { touched, error, warning } }) {
@@ -86,7 +77,6 @@ class SimpleForm extends Component {
   }
   render() {
     const { handleSubmit, reset } = this.props;
-    console.log(this.state);
     return (
       <Container>
         <Header>
