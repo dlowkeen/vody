@@ -45,30 +45,13 @@ class SimpleForm extends Component {
     this.state = {
       search: null
     };
-    console.log(this.props);
-    console.log(this.state);
     this.renderInput = this.renderInput.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
-    this.onPress = this.onPress.bind(this);
   }
 
   onSearchSubmit(data) {
-    const { title, year } = data;
-    const SearchInfo = {
-      title,
-      year
-    };
-    this.setState({
-      search: data
-    })
     this.props.fetchMovieData(data);
-    // this.props.navigation.push();
-  }
-
-  onPress() {
-    console.log(this.props);
-    // const { navigate } = this.props.navigation;
-    this.props.navigation.navigate('SearchResults');
+    this.props.navigation.navigate("SearchResults");
   }
 
   renderInput({ input, label, type, meta: { touched, error, warning } }) {
@@ -84,6 +67,7 @@ class SimpleForm extends Component {
     );
   }
   render() {
+    // console.log(this.props);
     const { handleSubmit, reset } = this.props;
     return (
       <Container>
@@ -100,9 +84,6 @@ class SimpleForm extends Component {
           </Button>
           <Button block primary onPress={reset}>
             <Text>Clear Values</Text>
-          </Button>
-          <Button block primary onPress={this.onPress}>
-            <Text>Navigate</Text>
           </Button>
         </Content>
       </Container>
