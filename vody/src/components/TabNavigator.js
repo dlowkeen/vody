@@ -6,15 +6,20 @@ import Search from './search/Search';
 import Profile from './profile/Profile';
 import SearchResults from './searchResults/SearchResults';
 import SimpleForm from './search/SimpleForm';
+import { Header } from 'native-base';
 
 export default TabNavigator({
   Home: { screen: Home },
-  Search: { screen: StackNavigator(
-    // { screen: Search },
-    {  
-      SimpleForm: { screen: SimpleForm },
+  Search: {
+    screen: StackNavigator({
+      SimpleForm: {
+        screen: SimpleForm,
+        navigationOptions: {
+          header: null
+        }
+      },
       SearchResults: { screen: SearchResults }
-    }
-  )},
+    })
+  },
   Profile: { screen: Profile }
 });
