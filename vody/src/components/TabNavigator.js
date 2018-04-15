@@ -6,9 +6,10 @@ import Search from './search/Search';
 import Profile from './profile/Profile';
 import SearchResults from './searchResults/SearchResults';
 import SimpleForm from './search/SimpleForm';
-import { Header } from 'native-base';
+import Login from './login/Login';
 
 export default TabNavigator({
+  Login: { screen: Login },
   Home: { screen: Home },
   Search: {
     screen: StackNavigator({
