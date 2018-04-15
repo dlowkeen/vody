@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { View } from "react-native";
+import { connect } from "react-redux";
 import axios from 'axios';
+import * as actions from "../../actions";
 import {
   Container,
   Item,
@@ -40,8 +42,10 @@ class SimpleForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isReady: false
+      search: null
     };
+    console.log(this.props);
+    console.log(this.state);
     this.renderInput = this.renderInput.bind(this);
   }
 
@@ -51,13 +55,15 @@ class SimpleForm extends Component {
       title,
       year
     };
-    let APIKey = "718190bc3e37096f5f6a3adfdeb9abaa";
-    let queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + APIKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
-    axios.get(queryURL).then(response => {
-        console.log(response);
-        let movie = response.data;
-        this.setState({ movie: movie });
-    });
+    console.log(this.state, this.props);
+    // this.props.fetchMovieData(movie);
+    // let APIKey = "718190bc3e37096f5f6a3adfdeb9abaa";
+    // let queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + APIKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
+    // axios.get(queryURL).then(response => {
+    //   let movie = response.data;
+    //   console.log(movie);
+    //   console.log(this.state);
+    // });
   }
 
   renderInput({ input, label, type, meta: { touched, error, warning } }) {
@@ -96,7 +102,14 @@ class SimpleForm extends Component {
     );
   }
 }
-export default reduxForm({
+
+const mapStateToProps = state => ({
+  search: state.search
+});
+
+SimpleForm = reduxForm({
   form: "test",
   validate
 })(SimpleForm);
+
+export default connect(mapStateToProps, actions)(SimpleForm);
