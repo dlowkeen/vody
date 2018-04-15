@@ -14,11 +14,16 @@ class SearchResults extends Component {
 
     // To do: remove and store in prod config variables
     let APIKey = "718190bc3e37096f5f6a3adfdeb9abaa";
-    let queryURL =
-      "https://api.themoviedb.org/3/discover/movie?api_key=" +
-      APIKey +
-      "&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1";
-    axios.get(queryURL).then(response => {
+    // let queryURL =
+    //   "https://api.themoviedb.org/3/discover/movie?api_key=" +
+    //   APIKey +
+    //   "&language=en-US&sort_by=release_date.desc&include_adult=false&include_video=false&page=1";
+    let queryURL = 
+      "https://api.themoviedb.org/3/search/movie/?api_key=" + 
+      APIKey + "&language=en-US&query=" + 
+      title + "&page=1&include_adult=false";
+      console.log(queryURL);
+      axios.get(queryURL).then(response => {
       let movie = response.data;
       this.setState({
         movie: movie
