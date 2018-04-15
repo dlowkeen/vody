@@ -1,1 +1,1 @@
-export const FETCH_MOVIEDATA = 'fetch_movie_data';
+export const FETCH_MOVIE_DATA = 'fetch_movie_data';

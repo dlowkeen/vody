@@ -45,7 +45,6 @@ class SearchForm extends Component {
       year
     };
     this.setState({ SearchInfo: SearchInfo });
-    console.log(this.state);
   }
 
   render() {

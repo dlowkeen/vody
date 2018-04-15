@@ -45,22 +45,13 @@ class SimpleForm extends Component {
     this.state = {
       search: null
     };
-    console.log(this.props);
-    console.log(this.state);
     this.renderInput = this.renderInput.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
   }
 
   onSearchSubmit(data) {
-    const { title, year } = data;
-    const SearchInfo = {
-      title,
-      year
-    };
-    this.setState({
-      search: data
-    })
     this.props.fetchMovieData(data);
+    this.props.navigation.navigate("SearchResults");
   }
 
   renderInput({ input, label, type, meta: { touched, error, warning } }) {
@@ -76,12 +67,13 @@ class SimpleForm extends Component {
     );
   }
   render() {
+    // console.log(this.props);
     const { handleSubmit, reset } = this.props;
     return (
       <Container>
         <Header>
           <Body>
-            <Title>Redux Form</Title>
+            <Title>Movie Search</Title>
           </Body>
         </Header>
         <Content padder>

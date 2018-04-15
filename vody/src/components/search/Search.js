@@ -5,6 +5,7 @@ import SimpleForm from './SimpleForm';
 
 export default class Search extends Component {
   render() {
+    console.log(this.props.navigation);
     return <Container>
         <Header>
           <Left />
