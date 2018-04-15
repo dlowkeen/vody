@@ -49,6 +49,7 @@ class SimpleForm extends Component {
     console.log(this.state);
     this.renderInput = this.renderInput.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onPress = this.onPress.bind(this);
   }
 
   onSearchSubmit(data) {
@@ -61,6 +62,13 @@ class SimpleForm extends Component {
       search: data
     })
     this.props.fetchMovieData(data);
+    // this.props.navigation.push();
+  }
+
+  onPress() {
+    console.log(this.props);
+    // const { navigate } = this.props.navigation;
+    this.props.navigation.navigate('SearchResults');
   }
 
   renderInput({ input, label, type, meta: { touched, error, warning } }) {
@@ -81,7 +89,7 @@ class SimpleForm extends Component {
       <Container>
         <Header>
           <Body>
-            <Title>Redux Form</Title>
+            <Title>Movie Search</Title>
           </Body>
         </Header>
         <Content padder>
@@ -92,6 +100,9 @@ class SimpleForm extends Component {
           </Button>
           <Button block primary onPress={reset}>
             <Text>Clear Values</Text>
+          </Button>
+          <Button block primary onPress={this.onPress}>
+            <Text>Navigate</Text>
           </Button>
         </Content>
       </Container>
