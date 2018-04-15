@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import { Text, View, TouchableOpacity } from 'react-native';
 import FBSDK, { LoginManager } from 'react-native-fbsdk';
+import * as actions from '../../actions';
 
-export default class Login extends Component {
+class Login extends Component {
   facebookAuth() {
     LoginManager.logInWithReadPermissions([
       'public_profile',
-      'email',
-      'user_photos'
+      'email'
     ]).then(function(result) {
       if (result.isCancelled) {
         console.log("Login cancelled");
       } else {
-        console.login("Login Success: " + result.grantedPermission);
+        console.log("Login Success: " + result.grantedPermissions);
+        this.props.loginSuccess();
+        // this.props.navigation.navigate('TabNavigation');
       }
     }, function(error) {
         console.log("an error occurred: " + error);
@@ -20,6 +23,7 @@ export default class Login extends Component {
   }
 
   render() {
+    console.log("this.props", this.props);
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <TouchableOpacity onPress={this.facebookAuth}>
@@ -29,3 +33,11 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = state => (
+  {
+    user: state.auth.user,
+  }
+);
+
+export default connect(mapStateToProps, actions)(Login);
