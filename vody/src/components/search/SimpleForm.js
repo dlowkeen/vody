@@ -38,6 +38,7 @@ const validate = values => {
   }
   return error;
 };
+
 class SimpleForm extends Component {
   constructor(props) {
     super(props);
@@ -47,6 +48,7 @@ class SimpleForm extends Component {
     console.log(this.props);
     console.log(this.state);
     this.renderInput = this.renderInput.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
   }
 
   onSearchSubmit(data) {
@@ -55,7 +57,11 @@ class SimpleForm extends Component {
       title,
       year
     };
-    console.log(this.state, this.props);
+    this.setState({
+      search: data
+    })
+    console.log("this.state", this.state);
+    console.log("this.props", this.props);
     // this.props.fetchMovieData(movie);
     // let APIKey = "718190bc3e37096f5f6a3adfdeb9abaa";
     // let queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + APIKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
