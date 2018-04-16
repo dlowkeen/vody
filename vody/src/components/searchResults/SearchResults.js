@@ -4,14 +4,12 @@ import { Text, View, Image, ScrollView } from "react-native";
 import { Container, Spinner, Content } from "native-base";
 import axios from "axios";
 import MovieCard from "../common/MovieCard";
+import MovieInfoModal from '../common/MovieInfoModal';
 
 class SearchResults extends Component {
   componentWillMount() {
     const { title, year } = this.props.search.test.values;
-    console.log(this.props.search);
-    console.log("title", title);
-    console.log("year", year);
-
+    console.log("this.props", this.props);
     // To do: remove and store in prod config variables
     let APIKey = "718190bc3e37096f5f6a3adfdeb9abaa";
     let queryURL =
@@ -20,7 +18,6 @@ class SearchResults extends Component {
       "&query=" +
       title;
     axios.get(queryURL).then(response => {
-      console.log("Inside axios call");
       let movie = response.data;
       this.setState({
         movie: movie
@@ -53,6 +50,7 @@ class SearchResults extends Component {
               release_date={movie.release_date}
               vote_average={movie.vote_average}
               overview={movie.overview}
+              modalButton={<MovieInfoModal />}
             />
           </Container>
         );
