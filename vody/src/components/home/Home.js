@@ -3,6 +3,7 @@ import { Text, View, Image, ScrollView } from 'react-native';
 import { Container, Spinner, Content } from 'native-base';
 import axios from 'axios';
 import MovieCard from "../common/MovieCard";
+// import MovieInfoModal from '../common/MovieInfoModal';
 
 export default class Home extends Component {
   
@@ -30,6 +31,7 @@ export default class Home extends Component {
               release_date={movie.release_date}
               vote_average={movie.vote_average}
               overview={movie.overview}
+              // modalButton={<MovieInfoModal />}
             />
           </Container>;
       });

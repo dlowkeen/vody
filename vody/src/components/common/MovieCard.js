@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import MovieInfoModal from './MovieInfoModal';
 
 const MovieCard = (props) => {
     return <Container>
@@ -11,16 +12,11 @@ const MovieCard = (props) => {
             </CardItem>
             <CardItem>
               <Left>
-                <Text note>{props.release_date}</Text>
+                {props.modalButton}
               </Left>
               <Right>
                 <Text>Avg Score: {props.vote_average}</Text>
               </Right>
-            </CardItem>
-            <CardItem>
-              <Left>
-                <Text>{props.overview}</Text>
-              </Left>
             </CardItem>
           </Card>
         </Content>

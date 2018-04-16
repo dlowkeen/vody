@@ -1,4 +1,5 @@
 import { FETCH_MOVIE_DATA } from "./types";
+import { FETCH_TEST } from './types';
 
 export const fetchMovieData = data => (
   {
@@ -6,4 +7,3 @@ export const fetchMovieData = data => (
     payload: data
   }
 )
-
