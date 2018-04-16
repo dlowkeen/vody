@@ -49,9 +49,8 @@ class SimpleForm extends Component {
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
   }
 
-  onSearchSubmit(data) {
-    // this.props.fetchMovieData(data);
-    console.log("data in onSearchSubmit", data);
+  onSearchSubmit() {
+    this.props.fetchMovieData();
     this.props.navigation.navigate("SearchResults");
   }
 
