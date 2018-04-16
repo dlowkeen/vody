@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Text, TouchableHighlight, View } from "react-native";
-import { Button } from 'native-base';
+import { Button, Card, CardItem, Body, Thumbnail, Left } from 'native-base';
 import { connect } from 'react-redux';
 
 class MovieInfoModal extends Component {
@@ -16,10 +16,20 @@ class MovieInfoModal extends Component {
     // console.log('this.props.search.test', this.props.search.test);
     if (this.props.movie.movie.results) {
       const movie = this.props.movie.movie.results[0];
+      let moviePath = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
         return (
         <View>
-            <Text>{movie.title}</Text>
-            <Text>{movie.overview}</Text>
+          <Card style={{ flex: 0 }}>
+            <CardItem>
+              <Left>
+                <Thumbnail source={{ uri: moviePath }} />
+                <Body>
+                  <Text style={{ fontSize: 22, paddingBottom: 12 }}>{movie.title}</Text>
+                  <Text>{movie.overview}</Text>
+                </Body>
+              </Left>
+            </CardItem>
+          </Card>
         </View>
         );
     } else {
@@ -55,15 +65,15 @@ class MovieInfoModal extends Component {
         >
           <View style={{ marginTop: 22 }}>
             <View>
-              <Text>Hello {this.renderContent()}!</Text>
+              {this.renderContent()}
 
-              <TouchableHighlight
+              <Button small info
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
                 }}
               >
-                <Text>Close Modal</Text>
-              </TouchableHighlight>
+                <Text>Go Back</Text>
+              </Button>
             </View>
           </View>
         </Modal>
