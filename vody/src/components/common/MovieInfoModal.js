@@ -14,10 +14,12 @@ class MovieInfoModal extends Component {
 
   renderContent() {
     // console.log('this.props.search.test', this.props.search.test);
-    if (this.props.search.test.values) {
+    if (this.props.movie.movie.results) {
+      const movie = this.props.movie.movie.results[0];
         return (
         <View>
-            <Text>{this.props.search.test.values.title}</Text>
+            <Text>{movie.title}</Text>
+            <Text>{movie.overview}</Text>
         </View>
         );
     } else {
