@@ -39,6 +39,8 @@ class MovieInfoModal extends Component {
   }
 
   render() {
+    console.log("this.state", this.state);
+    console.log('this.props', this.props);
     return (
       <View>
         <Modal
@@ -80,7 +82,8 @@ class MovieInfoModal extends Component {
 }
 
 const mapStateToProps = state => ({
-  search: state.search
+  search: state.search,
+  movie: state.movie
 });
 
 export default connect(mapStateToProps)(MovieInfoModal);
