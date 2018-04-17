@@ -14,8 +14,8 @@ class MovieInfoModal extends Component {
 
   renderContent() {
     if (this.props.movie.movie.results) {
-
-      const movie = this.props.movie.movie.results[0];
+      const position = this.props.position;
+      const movie = this.props.movie.movie.results[position];
       let moviePath = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
         return (
         <View>
