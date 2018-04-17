@@ -32,7 +32,10 @@ class SearchResults extends Component {
     const movie = this.state ? this.state.movie.results : null;
     let moviePath = "https://image.tmdb.org/t/p/w500/";
     if (this.state) {
+      let index = -1;
       const movieList = movie.map(movie => {
+        console.log(index);
+        index++;
         return (
           <Container>
             <MovieCard
@@ -41,7 +44,7 @@ class SearchResults extends Component {
               release_date={movie.release_date}
               vote_average={movie.vote_average}
               overview={movie.overview}
-              modalButton={<MovieInfoModal />}
+              modalButton={<MovieInfoModal position={index}/>}
             />
           </Container>
         );
