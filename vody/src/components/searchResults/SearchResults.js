@@ -41,9 +41,7 @@ class SearchResults extends Component {
             <MovieCard
               key={movie.id}
               Poster={moviePath + movie.poster_path}
-              release_date={movie.release_date}
               vote_average={movie.vote_average}
-              overview={movie.overview}
               modalButton={<MovieInfoModal position={index}/>}
             />
           </Container>

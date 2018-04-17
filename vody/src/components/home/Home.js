@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { Text, View, Image, ScrollView } from 'react-native';
 import { Container, Spinner, Content } from 'native-base';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 import MovieCard from "../common/MovieCard";
-// import MovieInfoModal from '../common/MovieInfoModal';
+import MovieInfoModal from '../common/MovieInfoModal';
 
-export default class Home extends Component {
+class Home extends Component {
   
   componentWillMount() {
     // To do: remove and store in prod config variables 
@@ -13,8 +15,9 @@ export default class Home extends Component {
     let queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + APIKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
     axios.get(queryURL).then(response => {
       let movie = response.data;
+      this.props.fetchHomeMovieData(movie);
       this.setState({
-        movie: movie
+        home: movie
       });
     });
   }
@@ -31,7 +34,7 @@ export default class Home extends Component {
               release_date={movie.release_date}
               vote_average={movie.vote_average}
               overview={movie.overview}
-              // modalButton={<MovieInfoModal />}
+              modalButton={<MovieInfoModal />}
             />
           </Container>;
       });
@@ -55,6 +58,7 @@ export default class Home extends Component {
   }
 
   render() {
+    console.log("this.props", this.props);
     return (
       <ScrollView>
         {this.renderContent()}
@@ -62,3 +66,9 @@ export default class Home extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  home: state.home
+});
+
+export default connect(mapStateToProps, actions)(Home);

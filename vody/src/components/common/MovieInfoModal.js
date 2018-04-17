@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Text, TouchableHighlight, View } from "react-native";
-import { Button, Card, CardItem, Body, Thumbnail, Left } from 'native-base';
+import { Button, Card, CardItem, Body, Thumbnail, Left, Right } from 'native-base';
 import { connect } from 'react-redux';
 
 class MovieInfoModal extends Component {
@@ -17,21 +17,33 @@ class MovieInfoModal extends Component {
       const position = this.props.position;
       const movie = this.props.movie.movie.results[position];
       let moviePath = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
-        return (
-        <View>
-          <Card style={{ flex: 0 }}>
-            <CardItem>
-              <Left>
-                <Thumbnail source={{ uri: moviePath }} />
-                <Body>
-                  <Text style={{ fontSize: 22, paddingBottom: 12 }}>{movie.title}</Text>
-                  <Text>{movie.overview}</Text>
-                </Body>
-              </Left>
-            </CardItem>
-          </Card>
-        </View>
-        );
+        return <View>
+            <Card style={{ flex: 0 }}>
+              <CardItem>
+                <Left>
+                  <Thumbnail source={{ uri: moviePath }} />
+                  <Body>
+                    <Text style={{ fontSize: 28, paddingBottom: 12 }}>
+                      {movie.title}
+                    </Text>
+                  </Body>
+                </Left>
+              </CardItem>
+              <CardItem cardBody>
+                <Text style={{ fontSize: 16, lineHeight: 25 }}>
+                  {movie.overview}
+                </Text>
+              </CardItem>
+              <CardItem>
+                <Left>
+                  <Text>{movie.release_date}</Text>
+                </Left>
+                <Right>
+                  <Text>Avg Score: {movie.vote_average}</Text>
+                </Right>
+              </CardItem>
+            </Card>
+          </View>;
     } else {
       return (
         <Container>
@@ -68,12 +80,13 @@ class MovieInfoModal extends Component {
             <View>
               {this.renderContent()}
 
-              <Button small info
+              <Button small primary
+                style={{ paddingLeft: 15, paddingRight: 15 }}
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
                 }}
               >
-                <Text>Go Back</Text>
+                <Text style={{ color: '#ffffff' }}>Go Back</Text>
               </Button>
             </View>
           </View>
@@ -88,7 +101,7 @@ class MovieInfoModal extends Component {
             this.setModalVisible(true);
           }}
         >
-          <Text>Learn More</Text>
+          <Text style={{ color: '#ffffff' }} >Learn More</Text>
         </Button>
       </View>
     );
