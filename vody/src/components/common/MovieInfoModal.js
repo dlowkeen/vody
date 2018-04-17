@@ -13,8 +13,8 @@ class MovieInfoModal extends Component {
   }
 
   renderContent() {
-    // console.log('this.props.search.test', this.props.search.test);
     if (this.props.movie.movie.results) {
+
       const movie = this.props.movie.movie.results[0];
       let moviePath = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
         return (
@@ -53,6 +53,7 @@ class MovieInfoModal extends Component {
   render() {
     console.log("this.state", this.state);
     console.log('this.props', this.props);
+    const position = this.props.position;
     return (
       <View>
         <Modal
@@ -81,6 +82,7 @@ class MovieInfoModal extends Component {
         <Button
           small
           primary
+          position={position}
           style={{ paddingLeft: 15, paddingRight: 15 }}
           onPress={() => {
             this.setModalVisible(true);
