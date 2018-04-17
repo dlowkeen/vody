@@ -63,8 +63,6 @@ class MovieInfoModal extends Component {
   }
 
   render() {
-    console.log("this.state", this.state);
-    console.log('this.props', this.props);
     const position = this.props.position;
     return (
       <View>

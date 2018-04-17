@@ -4,15 +4,14 @@ import { Container, Spinner, Content } from 'native-base';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import keys from '../../config/keys';
 import MovieCard from "../common/MovieCard";
 import MovieInfoModal from '../common/MovieInfoModal';
 
 class Home extends Component {
   
   componentWillMount() {
-    // To do: remove and store in prod config variables 
-    let APIKey = "718190bc3e37096f5f6a3adfdeb9abaa";
-    let queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + APIKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
+    let queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + keys.MoviesDBKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
     axios.get(queryURL).then(response => {
       let movie = response.data;
       this.props.fetchHomeMovieData(movie);
