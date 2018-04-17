@@ -51,8 +51,6 @@ class MovieInfoModal extends Component {
   }
 
   render() {
-    console.log("this.state", this.state);
-    console.log('this.props', this.props);
     const position = this.props.position;
     return (
       <View>
@@ -67,7 +65,6 @@ class MovieInfoModal extends Component {
           <View style={{ marginTop: 22 }}>
             <View>
               {this.renderContent()}
-
               <Button small info
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
