@@ -22,9 +22,10 @@ class Home extends Component {
   }
 
   renderContent() {
-    const movie = this.state ? this.state.movie.results : null;
+    const movie = this.props.home.home ? this.props.home.home.results : null;
+    console.log(this.props.home);
     let moviePath = "https://image.tmdb.org/t/p/w500/"
-    if (this.state) {
+    if (this.props.home.home) {
       const movieList = movie.map(movie=> {
         return <Container>
             <MovieCard 
