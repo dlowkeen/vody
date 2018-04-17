@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
+import { Field, reduxForm } from "redux-form";
 import axios from 'axios';
 import * as actions from "../../actions";
 import {
@@ -14,28 +15,27 @@ import {
   Button,
   Text
 } from "native-base";
-import { Field, reduxForm } from "redux-form";
 const validate = values => {
   const error = {};
-  error.email = "";
-  error.name = "";
-  var ema = values.email;
-  var nm = values.name;
-  if (values.email === undefined) {
+  error.title = "";
+  error.year = "";
+  var ema = values.title;
+  var nm = values.year;
+  if (values.title === undefined) {
     ema = "";
   }
-  if (values.name === undefined) {
+  if (values.year === undefined) {
     nm = "";
   }
-  if (ema.length < 8 && ema !== "") {
+  if (ema.length < 3 && ema !== "") {
     error.email = "too short";
   }
-  if (!ema.includes("@") && ema !== "") {
-    error.email = "@ not included";
-  }
-  if (nm.length > 8) {
-    error.name = "max 8 characters";
-  }
+  // if (!ema.includes("@") && ema !== "") {
+  //   error.email = "@ not included";
+  // }
+  // if (nm.length > 8) {
+  //   error.name = "max 8 characters";
+  // }
   return error;
 };
 
@@ -67,8 +67,8 @@ class SimpleForm extends Component {
     );
   }
   render() {
-    // console.log(this.props);
-    const { handleSubmit, reset } = this.props;
+    const { handleSubmit, reset, pristine, submitting } = this.props;
+    console.log("this.props", this.props);
     return (
       <Container>
         <Header>
@@ -79,10 +79,13 @@ class SimpleForm extends Component {
         <Content padder>
           <Field name="title" component={this.renderInput} />
           <Field name="year" component={this.renderInput} />
-          <Button block primary onPress={handleSubmit(this.onSearchSubmit)}>
+          <Button block primary 
+            stype="submit"
+            disabled={submitting}
+            onPress={handleSubmit(this.onSearchSubmit)}>
             <Text>Submit</Text>
           </Button>
-          <Button block primary onPress={reset}>
+          <Button block primary onClick={reset} type="button">
             <Text>Clear Values</Text>
           </Button>
         </Content>
