@@ -6,7 +6,7 @@ import keys from '../../config/keys';
 import MovieCard from "../common/MovieCard";
 // import MovieInfoModal from '../common/MovieInfoModal';
 
-export default class Home extends Component {
+class Home extends Component {
   
   componentWillMount() {
     let queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + keys.MoviesDBKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
@@ -52,10 +52,33 @@ export default class Home extends Component {
   }
 
   render() {
-    return (
-      <ScrollView>
+    const { textStyle, viewStyle } = styles;
+    return <ScrollView style={{ backgroundColor: "#DCDCDC" }}>
+        <View style={viewStyle}>
+          <Text style={textStyle}>Trending Movies</Text>
+        </View>
         {this.renderContent()}
-      </ScrollView>
-    );
+      </ScrollView>;
   }
 }
+
+const styles = {
+  viewStyle: {
+    justifyContent: "center",
+    backgroundColor: "#ffffff",
+    alignItems: "center",
+    height: 62,
+    paddingTop: 15,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    elevation: 2,
+    position: "relative"
+  },
+  textStyle: {
+    color: 'black',
+    fontSize: 17
+  }
+};
+
+export default Home;
