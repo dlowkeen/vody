@@ -77,8 +77,7 @@ class SimpleForm extends Component {
 
   render() {
     const { handleSubmit, reset } = this.props;
-    return (
-      <Container>
+    return <Container>
         <Header>
           <Body>
             <Title>Movie Search</Title>
@@ -86,15 +85,14 @@ class SimpleForm extends Component {
         </Header>
         <Content padder>
           {this.renderForm()}
-          <Button block primary onPress={handleSubmit(this.onSearchSubmit)}>
+          <Button block primary style={{ margin: 5 }} onPress={handleSubmit(this.onSearchSubmit)}>
             <Text>Submit</Text>
           </Button>
-          <Button block primary onPress={reset}>
+          <Button block primary style={{ margin: 5 }} onPress={reset}>
             <Text>Clear</Text>
           </Button>
         </Content>
-      </Container>
-    );
+      </Container>;
   }
 }
 

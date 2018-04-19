@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Container, Header, Left, Right, Title, Body, Content, Item, Input, Button, Text, Form, Label } from "native-base";
-import SearchForm from './SearchForm';
 import SimpleForm from './SimpleForm';
 
 export default class Search extends Component {
@@ -14,7 +13,6 @@ export default class Search extends Component {
           </Body>
           <Right />
         </Header>
-        {/* <SearchForm /> */}
         <SimpleForm />
       </Container>;
   }
