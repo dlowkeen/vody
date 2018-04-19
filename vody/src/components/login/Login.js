@@ -12,11 +12,13 @@ class Login extends Component {
     }
     this.facebookAuth = this.facebookAuth.bind(this);
     this.randomStuff = this.randomStuff.bind(this);
+    this.isUserLoggedIn = this.isUserLoggedIn.bind(this);
   }
 
-  componentDidMount() {
+  isUserLoggedIn() {
     if (this.props.user == "user") {
       console.log("User logged in");
+      this.props.navigation.navigate('TabNavigation');
     } else {
       console.log("User is NOT logged in");
     }
@@ -44,6 +46,7 @@ class Login extends Component {
 
   render() {
     console.log("this.props", this.props);
+    this.isUserLoggedIn();
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <TouchableOpacity onPress={this.facebookAuth}>
