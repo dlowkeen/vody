@@ -22,29 +22,6 @@ import {
 } from "./formValidation.js";
 import SearchFields from "./SearchFields";
 import { Field, reduxForm } from "redux-form";
-const validate = values => {
-  const error = {};
-  error.email = "";
-  error.name = "";
-  var ema = values.email;
-  var nm = values.name;
-  if (values.email === undefined) {
-    ema = "";
-  }
-  if (values.name === undefined) {
-    nm = "";
-  }
-  if (ema.length < 8 && ema !== "") {
-    error.email = "too short";
-  }
-  if (!ema.includes("@") && ema !== "") {
-    error.email = "@ not included";
-  }
-  if (nm.length > 8) {
-    error.name = "max 8 characters";
-  }
-  return error;
-};
 
 class SimpleForm extends Component {
   constructor(props) {
@@ -101,8 +78,7 @@ const mapStateToProps = state => ({
 });
 
 SimpleForm = reduxForm({
-  form: "test",
-  validate
+  form: "test"
 })(SimpleForm);
 
 export default connect(mapStateToProps, actions)(SimpleForm);

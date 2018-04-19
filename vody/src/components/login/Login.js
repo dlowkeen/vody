@@ -37,17 +37,16 @@ class Login extends Component {
       }
     }, function(error) {
         console.log("an error occurred: " + error);
-    })
-  }
-
-  render() {
-    this.isUserLoggedIn();
-    return <View style={{ flex: 1, backgroundColor: "#d122ff" }}>
+      })
+    }
+    
+    render() {
+      return <View style={{ flex: 1, backgroundColor: "#d122ff" }}>
         <View style={styles.container}>
           <Text style={styles.titleFont}>
             VODY
           </Text>
-          {/* <Text style={styles.titleFont}>VODY</Text> */}
+          {this.isUserLoggedIn()}
           <TouchableHighlight style={styles.container2} onPress={this.facebookAuth} underlayColor="transparent">
             <View style={styles.FBLoginButton}>
               <Image style={styles.FBLogo} source={FBLogo} />
