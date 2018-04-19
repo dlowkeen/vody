@@ -83,7 +83,7 @@ class SimpleForm extends Component {
             <Text>Submit</Text>
           </Button>
           <Button block primary onPress={reset}>
-            <Text>Clear Values</Text>
+            <Text>Clear</Text>
           </Button>
         </Content>
       </Container>
