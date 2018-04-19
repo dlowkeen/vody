@@ -8,7 +8,7 @@ import SearchResults from './searchResults/SearchResults';
 import SimpleForm from './search/SimpleForm';
 import Login from './login/Login';
 
-const TabNavigation =  TabNavigator({
+export default TabNavigation =  TabNavigator({
   Home: { screen: Home },
   Search: {
     screen: StackNavigator({
@@ -24,17 +24,17 @@ const TabNavigation =  TabNavigator({
   Profile: { screen: Profile }
 });
 
-export default StackNavigator({
-  Login: {
-    screen: Login,
-    navigationOptions: {
-      header: null
-    }
-  },
-  TabNavigation: {
-    screen: TabNavigation,
-    navigationOptions: {
-      header: null
-    }
-  }
-});
+// export default StackNavigator({
+//   Login: {
+//     screen: Login,
+//     navigationOptions: {
+//       header: null
+//     }
+//   },
+//   TabNavigation: {
+//     screen: TabNavigation,
+//     navigationOptions: {
+//       header: null
+//     }
+//   }
+// });

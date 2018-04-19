@@ -1,5 +1,5 @@
 import React from "react";
-import { Label, Span, Input, Item } from "native-base";
+import { Label, Span, Input, Item, Text } from "native-base";
 
 export const required = value => (value ? undefined : "Required");
 export const maxLength = max => value =>
@@ -29,3 +29,16 @@ export const renderField = ({
     </Item>
   );
 };
+
+export default renderInput = ({ input, label, type, meta: { touched, error, warning } }) => {
+  var hasError = false;
+  if (error !== undefined) {
+    hasError = true;
+  }
+  return (
+    <Item error={hasError}>
+      <Input {...input} placeholder={label}/>
+      {hasError ? <Text>{error}</Text> : <Text />}
+    </Item>
+  );
+}
