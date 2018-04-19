@@ -25,6 +25,16 @@ const TabNavigation =  TabNavigator({
 });
 
 export default StackNavigator({
-  Login: { screen: Login },
-  TabNavigation: { screen: TabNavigation }
-})
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      header: null
+    }
+  },
+  TabNavigation: {
+    screen: TabNavigation,
+    navigationOptions: {
+      header: null
+    }
+  }
+});
