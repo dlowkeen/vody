@@ -14,6 +14,13 @@ import {
   Button,
   Text
 } from "native-base";
+import {
+  required,
+  maxLength25,
+  minLength2,
+  renderField
+} from "./formValidation.js";
+import SearchFields from "./SearchFields";
 import { Field, reduxForm } from "redux-form";
 const validate = values => {
   const error = {};
@@ -45,7 +52,6 @@ class SimpleForm extends Component {
     this.state = {
       search: null
     };
-    this.renderInput = this.renderInput.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
   }
 
@@ -54,40 +60,39 @@ class SimpleForm extends Component {
     this.props.navigation.navigate("SearchResults");
   }
 
-  renderInput({ input, label, type, meta: { touched, error, warning } }) {
-    var hasError = false;
-    if (error !== undefined) {
-      hasError = true;
-    }
-    return (
-      <Item error={hasError}>
-        <Input {...input} />
-        {hasError ? <Text>{error}</Text> : <Text />}
-      </Item>
-    );
+  renderForm() {
+    const searchField = SearchFields.map(SearchField => {
+      return (
+        <Field
+          key={SearchField.name}
+          name={SearchField.name}
+          type={SearchField.type}
+          component={renderInput}
+          label={SearchField.label}
+        />
+      );
+    });
+    return searchField;
   }
+
   render() {
-    // console.log(this.props);
     const { handleSubmit, reset } = this.props;
-    return (
-      <Container>
+    return <Container>
         <Header>
           <Body>
             <Title>Movie Search</Title>
           </Body>
         </Header>
         <Content padder>
-          <Field name="title" component={this.renderInput} />
-          <Field name="year" component={this.renderInput} />
-          <Button block primary onPress={handleSubmit(this.onSearchSubmit)}>
+          {this.renderForm()}
+          <Button block primary style={{ margin: 5 }} onPress={handleSubmit(this.onSearchSubmit)}>
             <Text>Submit</Text>
           </Button>
-          <Button block primary onPress={reset}>
+          <Button block primary style={{ margin: 5 }} onPress={reset}>
             <Text>Clear</Text>
           </Button>
         </Content>
-      </Container>
-    );
+      </Container>;
   }
 }
 
