@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, Image } from 'react-native';
 import {
   Container,
   Header,
@@ -11,8 +11,24 @@ import {
   Card,
   CardItem
 } from "native-base";
+const dummyData = ["The King And I", "The Last Samurai", "The Avengers", "Cleopatra", "Tomb Raider"];
 
 class Profile extends Component {
+  
+  renderDummyData() {
+    let DummyData = dummyData.map(DummyData => {
+      return (
+        <CardItem bordered>
+          <Text>{DummyData}</Text>
+          <Right>
+            <Text>Read More</Text>
+          </Right>
+        </CardItem>
+      );
+    })
+    return DummyData;
+  }
+  
   render() {
     return <Container>
         <Header>
@@ -34,6 +50,11 @@ class Profile extends Component {
               </CardItem>
             </Card>
           </View>
+          <Card>
+            <ScrollView>
+            {this.renderDummyData()}
+            </ScrollView>
+          </Card>
         </Content>
       </Container>;
   }
