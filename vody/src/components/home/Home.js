@@ -7,7 +7,6 @@ import MovieCard from "../common/MovieCard";
 // import MovieInfoModal from '../common/MovieInfoModal';
 
 class Home extends Component {
-  
   componentWillMount() {
     let queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + keys.MoviesDBKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1";
     axios.get(queryURL).then(response => {
@@ -21,9 +20,8 @@ class Home extends Component {
     let moviePath = "https://image.tmdb.org/t/p/w500/"
     if (this.state) {
       const movieList = movie.map(movie=> {
-        return <Container>
+        return <Container key={movie.id}>
             <MovieCard 
-              key={movie.id}
               Poster={moviePath + movie.poster_path}
               release_date={movie.release_date}
               vote_average={movie.vote_average}

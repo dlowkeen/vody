@@ -18,7 +18,7 @@ class Profile extends Component {
   renderDummyData() {
     let DummyData = dummyData.map(DummyData => {
       return (
-        <CardItem bordered>
+        <CardItem bordered key={DummyData}>
           <Text>{DummyData}</Text>
           <Right>
             <Text>Read More</Text>

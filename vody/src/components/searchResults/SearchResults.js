@@ -29,9 +29,8 @@ class SearchResults extends Component {
       const movieList = movie.map(movie => {
         index++;
         return (
-          <Container>
+          <Container key={movie.id}>
             <MovieCard
-              key={movie.id}
               Poster={moviePath + movie.poster_path}
               release_date={movie.release_date}
               vote_average={movie.vote_average}
